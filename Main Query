@@ -1,0 +1,51 @@
+select
+c.id as client_id
+,c.subuser_client_id
+,c.stripeid
+,c.accttype
+,c.email as client_email
+,c.personalphone as client_phone
+--,firstname|| ' ' ||lastname as Client_name
+,c.firstname as client_firstname
+,c.lastname as client_lastname
+,c.salesperson
+,c.monthlyrate
+,c.avatar
+,c.created as client_create_date
+,c.lastupdated as client_last_updated_date
+,c.preflocation
+,c.subusers
+,c.plan
+,l.id as location_id
+,l.placeid
+--,l.subcripstionid
+,l.sendername
+--,l.phone as location_phone
+--,l.gitpagelink
+,l.businessname
+,l.reviewinvitetext
+,l.streetaddress
+,l.features
+,l.comments
+,l.created as location_create_date
+,l.lastupdated as location_last_updated	
+,l.reviewlink as location_review_link
+,l.reviewsites
+,l.shortlink
+,e.id as recipient_id
+,e.email as recipient_email
+,e.firstname as recipient_firstname
+,e.lastname as recipient_lastname
+,e.phone as recipient_phone
+,e.created as recipient_create_date
+,e.success as sending_success
+,e.attempted as sending_attempted
+,e.lastupdated as recipient_last_updated_date
+
+from end_user e
+
+LEFT JOIN location l 
+ON l.id = e.locationid 
+
+LEFT JOIN client_user c
+ON l.clientid = c.id
